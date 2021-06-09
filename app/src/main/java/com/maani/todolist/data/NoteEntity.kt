@@ -6,7 +6,9 @@ import androidx.room.PrimaryKey
 import com.maani.todolist.NEW_NOTE_ID
 import kotlinx.android.parcel.Parcelize
 import java.util.*
+//For passing object as parameter from one destination to other
 @Parcelize
+//For Room database
 @Entity(tableName = "notes")
 data class NoteEntity(
     @PrimaryKey (autoGenerate = true)

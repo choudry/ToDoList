@@ -21,15 +21,17 @@ class MainFragment : Fragment(), NoteListAdapter.ListItemListener {
     private lateinit var binding: FragmentMainBinding
     private lateinit var viewmodel: MainViewModel
     private lateinit var adapter: NoteListAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         binding = FragmentMainBinding.inflate(inflater, container, false)
+        //to enable menu option
         setHasOptionsMenu(true)
 
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
         viewmodel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewmodel.notelist?.observe(viewLifecycleOwner, Observer {
             adapter = NoteListAdapter(it, this@MainFragment)
@@ -56,6 +58,7 @@ class MainFragment : Fragment(), NoteListAdapter.ListItemListener {
 
     override fun goEditFragment(noteId: Int) {
         Log.i(TAG, "Item clicked position is: $noteId")
+
 
         val action = MainFragmentDirections.actionToEditor(noteId)
         findNavController().navigate(action)
